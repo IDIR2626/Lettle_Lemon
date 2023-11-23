@@ -10,10 +10,6 @@ The Little Lemon App is a simple restaurant app developed as part of the Android
 - **Order Placement:** Place an order for your favorite dishes.
 - **Order History:** Keep track of your previous orders.
 
-## Screenshots
-
-Include screenshots or GIFs of your app in action. You can create a separate folder in your repository for these images.
-
 ## Getting Started
 
 ### Prerequisites
