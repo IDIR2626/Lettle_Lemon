@@ -20,4 +20,4 @@ The Little Lemon App is a simple restaurant app developed as part of the Android
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/little-lemon-app.git
+[git clone https://github.com/your-username/little-lemon-app.git](https://github.com/IDIR2626/Lettle_Lemon.git)https://github.com/IDIR2626/Lettle_Lemon.git
