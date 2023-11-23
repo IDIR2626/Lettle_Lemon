@@ -41,7 +41,7 @@ fun AppScreen(){
 
     val destinationsList = listOf (Home, Menu, Location)
     var selectedIndex by rememberSaveable {
-        mutableIntStateOf(1)
+        mutableIntStateOf(0)
     }
 
     Scaffold(
@@ -51,7 +51,7 @@ fun AppScreen(){
 
         bottomBar = {
             NavigationBar() {
-                destinationsList.forEach { screen ->
+                destinationsList.forEachIndexed { index, screen  ->
                     NavigationBarItem(
 
                         icon = {
@@ -60,9 +60,10 @@ fun AppScreen(){
                                 contentDescription = "icon")
                                },
                         label = { Text(text = screen.title)},
-                        selected = true,
+                        selected = selectedIndex == index,
                         onClick = {
-                            selectedIndex = destinationsList.indexOf(screen)
+                            //selectedIndex = destinationsList.indexOf(screen)
+                            selectedIndex = index
                             navController.navigate(destinationsList[selectedIndex].route) {
                                 popUpTo(Home.route)
                                 launchSingleTop = true
