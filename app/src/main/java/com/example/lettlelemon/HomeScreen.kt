@@ -68,7 +68,7 @@ fun HomeScreen(navController: NavHostController) {
             }
             Button(
                 onClick = {
-                          navController.navigate(Menu.route)
+                          navController?.navigate(Menu.route)
                 },
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(Color(0xFFF4CE14))
@@ -81,7 +81,7 @@ fun HomeScreen(navController: NavHostController) {
                 )
             }
         }
-        LowerPanel()
+        LowerPanel(navController)
     }
 }
 
@@ -124,10 +124,10 @@ fun TopAppBar() {
 
 
 @Composable
-fun LowerPanel() {
+fun LowerPanel(navController: NavHostController) {
     Column {
         WeeklySpecialCard()
-        MenuDish()
+        MenuDish(navController)
     }
 }
 
@@ -150,10 +150,10 @@ fun WeeklySpecialCard() {
 
 
 @Composable
-fun MenuDish() {
+fun MenuDish(navController: NavHostController) {
     LazyColumn {
         items(Dishes) { Dish ->
-            MenuDish(Dish)
+            MenuDish(Dish, navController)
         }
     }
 }

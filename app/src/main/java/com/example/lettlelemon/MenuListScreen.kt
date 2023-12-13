@@ -1,6 +1,8 @@
 package com.example.lettlelemon
 
-import android.widget.Toast
+import android.annotation.SuppressLint
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,11 +34,11 @@ import androidx.navigation.NavHostController
 
 @Composable
 @Preview(showBackground = true)
-fun MenuListScreen(navController: NavHostController) {
+fun MenuListScreen(navController: NavHostController?) {
 
     Column {
         UpperPanel()
-        LowerPanel2()
+        LowerPanel2(navController!!)
     }
 
 }
@@ -70,7 +72,7 @@ private fun UpperPanel() {
 
 @Preview(showBackground = true)
 @Composable
-fun LowerPanel2() {
+fun LowerPanel2(navController: NavHostController?) {
     Column {
         LazyRow {
             items(Categories) { category ->
@@ -84,7 +86,7 @@ fun LowerPanel2() {
         )
         LazyColumn {
             items(Dishes) { Dish ->
-                MenuDish(Dish)
+                MenuDish(Dish, navController!!)
             }
         }
     }
@@ -105,12 +107,15 @@ fun MenuCategory(category: String) {
 }
 
 @Composable
-fun MenuDish(Dish: Dish) {
+fun MenuDish(Dish: Dish, navController: NavHostController?) {
     val context = LocalContext.current
     Card (
         modifier = Modifier.clickable(
             onClick = {
-                Toast.makeText(context, "${Dish.name} is selected", Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, "${Dish.name} is selected", Toast.LENGTH_LONG).show()
+                navController?.navigate("dish_details/${Dish.name}/${Dish.description}/${Dish.image}"){
+                    popUpTo(Menu.route)
+                }
             }
         )
             ) {
@@ -155,12 +160,41 @@ val Categories = listOf(
     "Specials"
 )
 
+@SuppressLint("ParcelCreator")
 data class Dish(
     val name: String,
     val price: String,
     val description: String,
     val image: Int
-)
+): Parcelable {
+    constructor(parcel: Parcel): this(
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readInt()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+        parcel.writeString(price)
+        parcel.writeString(description)
+        parcel.writeInt(image)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Dish> {
+        override fun createFromParcel(parcel: Parcel): Dish {
+            return Dish(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Dish?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
 
 val Dishes = listOf(
     Dish(

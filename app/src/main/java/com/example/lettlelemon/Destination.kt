@@ -24,3 +24,5 @@ object Location : Destination{
     override val icon = R.drawable.ic_location
     override val title = "Location"
 }
+
+

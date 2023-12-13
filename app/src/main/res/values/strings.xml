@@ -17,4 +17,5 @@
     <string name="order">Order</string>
     <string name="log">Log in</string>
     <string name="order_for_takeaway">ORDER FOR TAKEAWAY</string>
+    <string name="title_activity_dish_details">DishDetailsActivity</string>
 </resources>

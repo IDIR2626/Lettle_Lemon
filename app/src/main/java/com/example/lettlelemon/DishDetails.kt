@@ -35,31 +35,31 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 @Preview(showBackground = true)
 @Composable
 //todolater : pass to the DishDetailsScreen a Dish Objectt
-private fun DishDetailsScreen (){
+fun DishDetails(navController: NavHostController?, name: String, description: String, image: Int) {
     var orderCounter by rememberSaveable {
         mutableIntStateOf(0)
     }
-    DishDetails(orderCounter, {++orderCounter}, {--orderCounter})
+    DishDetailsScreen(name, description, image,orderCounter, {++orderCounter}, {--orderCounter})
 }
 
 @Composable
-fun DishDetails(orderCounter:Int, onIncrement: () -> Unit, onDecrement : () -> Unit){
+fun DishDetailsScreen(name: String, description: String, image: Int ,orderCounter:Int, onIncrement: () -> Unit, onDecrement : () -> Unit){
     val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
-    ) {
+    ){
         Image(
-            painter = painterResource(id = R.drawable.lasagne),
+            painter = painterResource(id = image),
             contentDescription = "Greek Salad",
             modifier = Modifier
                 .fillMaxWidth(),
             contentScale = ContentScale.FillWidth
-
         )
 
         Spacer(modifier = Modifier.padding(12.dp))
@@ -72,7 +72,7 @@ fun DishDetails(orderCounter:Int, onIncrement: () -> Unit, onDecrement : () -> U
         ) {
 
             Text(
-                text = "Greek Salad",
+                text = name,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF0C0C0B),
@@ -80,7 +80,7 @@ fun DishDetails(orderCounter:Int, onIncrement: () -> Unit, onDecrement : () -> U
             )
 
             Text(
-                text = stringResource(id = R.string.description),
+                text = description,
                 color = Color(0xFF3D3D30)
             )
 
