@@ -16,6 +16,28 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     ),
 
+//    h1 = TextStyle(
+//        fontSize = 26.sp,
+//        fontWeight = FontWeight.Bold,
+//        color = charcoal
+//    ),
+//    h2 = TextStyle(
+//        color = charcoal,
+//        fontSize = 18.sp,
+//        fontWeight = FontWeight.Bold
+//    ),
+//    body1 = TextStyle(
+//        color = green
+//    ),
+//    body2 = TextStyle(
+//        fontWeight = FontWeight.Bold,
+//        color = green
+//    ),
+//    button = TextStyle(
+//        fontSize = 14.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+
     /* Other default text styles to override
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
