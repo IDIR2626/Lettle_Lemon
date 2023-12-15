@@ -29,4 +29,4 @@ Throughout the course and the development of this app, I have gained proficiency
 ### Clone the Repository
 
 ```bash
-https://github.com/IDIR2626/Lettle_Lemon.git)https://github.com/IDIR2626/Lettle_Lemon.git
+https://github.com/IDIR2626/Lettle_Lemon.git
